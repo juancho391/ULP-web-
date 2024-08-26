@@ -1,0 +1,152 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'styles/PaginaPrincipal.css' %}" />
+    <link
+      rel="icon"
+      href="{% static 'WIDGETS/logo-universidad-libre.png' %}"
+      type="image/png"
+    />
+    <title>Universidad Libre</title>
+  </head>
+  <body>
+    <header>
+      <dialog id="modalWindow" class="modal">
+        <form class="modal__content" method="POST">
+          {% csrf_token %}
+          <h1 class="modal__title">Iniciar sesión</h1>
+          <p class="modal__text">¿Es tu primera vez? Registrate!</p>
+          <input
+            class="form-input"
+            type="email"
+            placeholder="Correo institucional"
+            name="email"
+          />
+          <input class="form-input" type="password" placeholder="Contraseña" name="password" />
+          <div class="form">
+            <a class="form-enlace" href="">¿Olvidaste la contraseña?</a>
+          </div>
+          <div class="boton">
+            <button class="form-boton">Iniciar sesión</button>
+          </div>
+          <a href="#" class="modal__close-button">X</a>
+        </form>
+      </dialog>
+      <dialog id="modalWindow2" class="modal">
+        <form class="modal__content content--registrar" method="POST">
+          {% csrf_token %}
+          <h1 class="modal__title">Registrate!</h1>
+          <p class="modal__text">¿Ya tienes una cuenta? Inicia sesión aquí!</p>
+          <input class="form-input" type="text" placeholder="Nombre completo"  name="nombreUsuarioRegistro"/>
+          <input
+            class="form-input"
+            type="email"
+            placeholder="Correo institucional"
+            name="correoRegistro"
+          />
+          <input
+            class="form-input"
+            type="password"
+            placeholder="Crear contraseña"
+            name="contraseñaRegistro"
+          />
+          <input
+            class="form-input"
+            type="password"
+            placeholder="Confirmar contraseña"
+            name="contraseñaRegistroRepetir"
+          />
+          <div>
+            <!-- {{error}} -->
+            <p class="Validar-Contraseña">Contraseñas no coinciden</p>
+          </div>
+          <div class="form">
+            <label
+              ><input type="checkbox" class="checkbox" />Aceptar
+              <a class="form-enlace" href="">terminos y condiciones</a>
+            </label>
+          </div>
+          <div class="boton">
+            <button class="form-boton boton-registrar">Registrarse</button>
+          </div>
+          <a href="#" class="modal__close-button">X</a>
+        </form>
+      </dialog>
+      <div class="contenedor_header">
+        <div class="logo">
+          <img src="{% static 'WIDGETS/Unknown.jpg' %}" class="logo_proyecto" alt="" />
+          <h1>ULP.BYTE</h1>
+        </div>
+        <div class="contenedor-buscador">
+          <label for="targetInput">
+            <img
+              class="icono-buscador"
+              src="../WIDGETS/logo-buscador.png"
+              alt=""
+            />
+          </label>
+          <input
+            id="targetInput"
+            type="text"
+            class="buscador"
+            placeholder="Buscar eventos"
+          />
+        </div>
+      </div>
+      <nav class="navbar">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="pagina-inicio.html">Inicio</a></li>
+          <li class="nav-item"><a href="">Contacto</a></li>
+          <li class="nav-item"><a href="">Publicaciones</a></li>
+          <li class="nav-item"><a href="">Tutorías</a></li>
+        </ul>
+        <ul class="nav-login">
+          <li class="nav-item">
+            <a href="#modalWindow" class="login-button">Iniciar sesión</a>
+          </li>
+          <li class="nav-item">
+            <a href="#modalWindow2" class="register-button">Registrarse</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <section>
+      <h2 class="subtitulo_eventos">
+        Descubre cuales son los proximos eventos!
+      </h2>
+      <div class="contenido">
+        {% for evento in EventosDisponibles %}
+          <div class="card">
+            <p class="card_title">{{evento.nombreEvento}}</p>
+            <div class="card_img"></div>
+          </div>
+        {% endfor %}
+
+      </div>
+    </section>
+    <footer>
+      <ul class="foter-list">
+        <li class="foter-item item--ULP"><a href="">ULP.BYTE</a></li>
+        <li class="foter-item item--correo">
+          <a href="">correoinstitucional@unilibre.edu.co</a>
+        </li>
+        <li class="foter-item item--telefono">
+          <a href="">Telefono 300XXXXXXX</a>
+        </li>
+        <li class="foter-item item--ubicacion">
+          <a href="">Universidad Libre seccional Pereira Belmonte</a>
+        </li>
+      </ul>
+      <ul class="foter-list">
+        <li class="foter-item"><a href="">Avisos legales</a></li>
+        <li class="foter-item"><a href="">Politica de privacidad</a></li>
+        <li class="foter-item">
+          <a href="">Politica de regulación de contenido</a>
+        </li>
+      </ul>
+    </footer>
+  </body>
+</html>
