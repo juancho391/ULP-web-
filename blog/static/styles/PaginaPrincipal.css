@@ -191,12 +191,12 @@ body {
   }
   
   .item--telefono::before {
-    content: url(../WIDGETS/telephone.png);
+    content: url(/ULP-web-/blog/static/WIDGETS/email.png);
     padding-right: 10px;
   }
   
   .item--ubicacion::before {
-    content: url(../WIDGETS/location.png);
+    content: url(/ULP-web-/blog/static/WIDGETS/maps-and-flagsBlanco.png);
     padding-right: 10px;
   }
   
